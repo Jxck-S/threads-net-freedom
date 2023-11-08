@@ -65,7 +65,7 @@ class PrivateThreadsApi(AbstractThreadsApi):
         self.instagram_public_key_id, self.instagram_public_key = self._get_instagram_public_key()
         self.encrypted_password, self.current_timestamp_as_string = self._encrypt_password(password=self.password)
 
-        if self.settings.are_provided:
+        if self.settings.are_provided and self.settings.authentication_token:
             self.instagram_api_token = self.settings.authentication_token
 
         else:
