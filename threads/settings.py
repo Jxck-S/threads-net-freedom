@@ -24,9 +24,9 @@ class Settings:
         self._timezone_offset = -14400
         self._device_id = generate_android_device_id()
         self._device_manufacturer = 'OnePlus'
-        self._device_model = 'ONEPLUS+A3010'
-        self._device_android_version = 25
-        self._device_android_release = '7.1.1'
+        self._device_model = 'ONEPLUS+PBH110'
+        self._device_android_version = 33
+        self._device_android_release = '13.0'
 
         if settings is None:
             return
@@ -39,7 +39,10 @@ class Settings:
             with open(settings_as_file_path) as json_file:
                 settings = json.load(json_file)
 
-        self._authentication_token = settings.get('authentication').get('token')
+        try:
+            self._authentication_token = settings.get('authentication').get('token')
+        except AttributeError:
+            self._authentication_token = None
         self._timezone_offset = settings.get('timezone').get('offset')
         self._device_id = settings.get('device').get('id')
         self._device_manufacturer = settings.get('device').get('manufacturer')
