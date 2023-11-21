@@ -92,6 +92,8 @@ class PrivateThreadsApi(AbstractThreadsApi):
         """
         response = requests.get(url=f'{self.INSTAGRAM_API_URL}/users/{username}/usernameinfo/', headers=self.headers)
 
+        response.raise_for_status()
+        
         user_id_as_string = response.json().get('user').get('pk')
         user_id_as_int = int(user_id_as_string)
 
